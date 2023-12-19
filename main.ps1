@@ -39,14 +39,15 @@ $apps = @(
 )
 
 # Install Tools
-foreach ($item in $apps) {
-    Write-Host "`n"
-    $Key = $item
-    $Path = "$env:USERPROFILE\Custom\$Key"
-    Write-Host "App: $Key,  Path: $Path"
-    winget install --location $Path --id $Key -e
-    Write-Host "`n"
-}
+# foreach ($item in $apps) {
+#     Write-Host "`n"
+#     $Key = $item
+#     $Path = "$env:USERPROFILE\Custom\$Key"
+#     Write-Host "App: $Key,  Path: $Path"
+#     winget install --location $Path --id $Key -e
+#     Write-Host "`n"
+# }
+
 ############################################################################
 # Infra Tools
 $infra = @(
@@ -61,14 +62,14 @@ $infra = @(
 )
 
 # Install Infra Tools
-foreach ($item in $infra) {
-    Write-Host "`n"
-    $Key = $item
-    $Path = "$env:USERPROFILE\Custom\$Key"
-    Write-Host "App: $Key,  Path: $Path"
-    winget install --location $Path --id $Key -e
-    Write-Host "`n"
-}
+# foreach ($item in $infra) {
+#     Write-Host "`n"
+#     $Key = $item
+#     $Path = "$env:USERPROFILE\Custom\$Key"
+#     Write-Host "App: $Key,  Path: $Path"
+#     winget install --location $Path --id $Key -e
+#     Write-Host "`n"
+# }
 
 ############################################################################
 # Hashicorp Tools
@@ -130,14 +131,13 @@ $ides = @{
 
 
 # Install IDEs
-foreach ($ide in $ides.GetEnumerator()) {
-    Write-Host "`n"
-    $Key = $ide.Key
-    $Value = $ide.Value
-    $Path = "$env:USERPROFILE\Custom\$Key"
-    Write-Host "IDE: $Key, Version: $Value, Path: $Path"
-    winget install --location $Path --id $Key --version $Value -e
-    Write-Host "`n"
-}
-
+# foreach ($ide in $ides.GetEnumerator()) {
+#     Write-Host "`n"
+#     $Key = $ide.Key
+#     $Value = $ide.Value
+#     $Path = "$env:USERPROFILE\Custom\$Key"
+#     Write-Host "IDE: $Key, Version: $Value, Path: $Path"
+#     winget install --location $Path --id $Key --version $Value -e
+#     Write-Host "`n"
+# }
 
