@@ -136,4 +136,28 @@ Enable-WindowsOptionalFeature -Online -FeatureName TelnetClient -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName Containers --norestart -NoRestart
-wsl --install Debian
+
+
+New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -PropertyType DWORD -Force
+
+New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name TaskbarSmallIcons -Value 1 -PropertyType DWORD -Force
+New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ -Name "EnableAutoTray" -Value 1 -PropertyType DWORD -Force
+
+
+# Remove News and Interests from the taskbar
+$newsAndInterestsPath = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds"
+
+
+# Set the registry entry value to 0 (disable News and Interests)
+New-ItemProperty -Path $newsAndInterestsPath -Name "ShellFeedsTaskbarViewMode" -Value 0 -PropertyType DWORD -Force
+
+
+
+
+# Hide the search bar from the taskbar
+$searchBarPath = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search"
+
+# Set the registry entry value to 1 (hide search box)
+New-ItemProperty -Path $searchBarPath -Name "SearchboxTaskbarMode" -Value 1 -PropertyType DWORD -Force
+
+
