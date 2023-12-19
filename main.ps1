@@ -70,8 +70,11 @@ $ides = @{
 
 # Install IDEs
 foreach ($ide in $ides.GetEnumerator()) {
-    Write-Host $ide.Key -- $ide.Value
-    winget install --location "$env:USERPROFILE\Custom\$ide.Key" --id $ide.Key --version $ide.Value -e
+    $ideKey = $ide.Key
+    $ideValue = $ide.Value
+    $idePath = "$env:USERPROFILE\Custom\$ideKey"
+    Write-Host "IDE: $ideKey, Version: $ideValue, Path: $idePath"
+    winget install --location $idePath --id $ideKey --version $ideValue -e
 }
 
 
