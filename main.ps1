@@ -1,15 +1,3 @@
-# Install-Module -Name Microsoft.WinGet.Client
-
-# Install-WindowsFeature -Name Telnet-Client -IncludeAllSubFeature
-
-# dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-
-# wsl --install Debian
-
-# winget install example --version 1.2.3 --location $env:USERPROFILE\Custom\Git
-
-
-
 # Install applications using winget with specified versions
 ############################################################################
 # Applications
@@ -35,18 +23,19 @@ $apps = @(
     "EpicGames.EpicGamesLauncher",
     "RiotGames.LeagueOfLegends.BR",
     "qBittorrent.qBittorrent",
+	"Microsoft.PowerShell",
     "Nvidia.GeForceExperience"
 )
 
 # Install Tools
-# foreach ($item in $apps) {
-#     Write-Host "`n"
-#     $Key = $item
-#     $Path = "$env:USERPROFILE\Custom\$Key"
-#     Write-Host "App: $Key,  Path: $Path"
-#     winget install --location $Path --id $Key -e
-#     Write-Host "`n"
-# }
+ foreach ($item in $apps) {
+     Write-Host "`n"
+     $Key = $item
+     $Path = "$env:USERPROFILE\Custom\$Key"
+     Write-Host "App: $Key,  Path: $Path"
+     winget install --location $Path --id $Key -e
+     Write-Host "`n"
+ }
 
 ############################################################################
 # Infra Tools
@@ -58,18 +47,19 @@ $infra = @(
     "Docker.DockerDesktop",
     "Docker.DockerCLI",
     "Docker.DockerCompose",
-    "RedHat.Podman"
+    "RedHat.Podman",
+    "GoLang.Go" 
 )
 
 # Install Infra Tools
-# foreach ($item in $infra) {
-#     Write-Host "`n"
-#     $Key = $item
-#     $Path = "$env:USERPROFILE\Custom\$Key"
-#     Write-Host "App: $Key,  Path: $Path"
-#     winget install --location $Path --id $Key -e
-#     Write-Host "`n"
-# }
+ foreach ($item in $infra) {
+     Write-Host "`n"     
+     $Key = $item
+     $Path = "$env:USERPROFILE\Custom\$Key"
+     Write-Host "App: $Key,  Path: $Path"
+     winget install --location $Path --id $Key -e
+     Write-Host "`n"
+ }
 
 ############################################################################
 # Hashicorp Tools
@@ -89,7 +79,6 @@ $DevKit = @{
     # LTS Version
     "OpenJS.NodeJS.LTS" = "20.10.0";
     # Latest Version
-    "Golang.Go" = "1.21.5";
     # Gets the ID version
     "Python.Python.3.12" = "3.12";
     # Matching version For Eclipse
@@ -100,7 +89,7 @@ $DevKit = @{
     # Fixed version
     "CrystalLang.Crystal" = "1.9.2"
     # Gets the ID version
-    "RubyInstallerTeam.Ruby.3.2 " = "3.2.1-1"
+    "RubyInstallerTeam.Ruby.3.2" = "3.2.1-1"
 }
 
 # Install DevKit
@@ -131,13 +120,20 @@ $ides = @{
 
 
 # Install IDEs
-# foreach ($ide in $ides.GetEnumerator()) {
-#     Write-Host "`n"
-#     $Key = $ide.Key
-#     $Value = $ide.Value
-#     $Path = "$env:USERPROFILE\Custom\$Key"
-#     Write-Host "IDE: $Key, Version: $Value, Path: $Path"
-#     winget install --location $Path --id $Key --version $Value -e
-#     Write-Host "`n"
-# }
+ foreach ($ide in $ides.GetEnumerator()) {
+     Write-Host "`n"
+     $Key = $ide.Key
+     $Value = $ide.Value
+     $Path = "$env:USERPROFILE\Custom\$Key"
+     Write-Host "IDE: $Key, Version: $Value, Path: $Path"
+     winget install --location $Path --id $Key --version $Value -e
+     Write-Host "`n"
+ }
 
+
+
+Enable-WindowsOptionalFeature -Online -FeatureName TelnetClient -NoRestart
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -NoRestart
+Enable-WindowsOptionalFeature -Online -FeatureName Containers --norestart -NoRestart
+wsl --install Debian
