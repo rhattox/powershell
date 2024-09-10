@@ -135,7 +135,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName TelnetClient -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName Containers -NoRestart
-
+Enable-WindowsOptionalFeature -Online -FeatureName Containers-DisposableClientVM -All 
 
 New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -PropertyType DWORD -Force
 
