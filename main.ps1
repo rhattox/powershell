@@ -23,7 +23,7 @@ $apps = @(
     "EpicGames.EpicGamesLauncher",
     "RiotGames.LeagueOfLegends.BR",
     "qBittorrent.qBittorrent",
-	"Microsoft.PowerShell",
+    "Microsoft.PowerShell",
     "Nvidia.GeForceExperience"
 )
 
@@ -47,8 +47,7 @@ $infra = @(
     "Docker.DockerDesktop",
     "Docker.DockerCLI",
     "Docker.DockerCompose",
-    "RedHat.Podman",
-    "GoLang.Go" 
+    "RedHat.Podman"
 )
 
 # Install Infra Tools
@@ -93,15 +92,15 @@ $DevKit = @{
 }
 
 # Install DevKit
-foreach ($kit in $DevKit.GetEnumerator()) {
-    Write-Host "`n"
-    $Key = $kit.Key
-    $Value = $kit.Value
-    $Path = "$env:USERPROFILE\Custom\$Key"
-    Write-Host "DevKit: $Key, Version: $Value, Path: $Path"
-    winget install --location $Path --id $Key --version $Value -e
-    Write-Host "`n"
-}
+# foreach ($kit in $DevKit.GetEnumerator()) {
+#     Write-Host "`n"
+#     $Key = $kit.Key
+#     $Value = $kit.Value
+#     $Path = "$env:USERPROFILE\Custom\$Key"
+#     Write-Host "DevKit: $Key, Version: $Value, Path: $Path"
+#     winget install --location $Path --id $Key --version $Value -e
+#     Write-Host "`n"
+# }
 
 ############################################################################
 # IDEs
@@ -120,15 +119,15 @@ $ides = @{
 
 
 # Install IDEs
- foreach ($ide in $ides.GetEnumerator()) {
-     Write-Host "`n"
-     $Key = $ide.Key
-     $Value = $ide.Value
-     $Path = "$env:USERPROFILE\Custom\$Key"
-     Write-Host "IDE: $Key, Version: $Value, Path: $Path"
-     winget install --location $Path --id $Key --version $Value -e
-     Write-Host "`n"
- }
+ # foreach ($ide in $ides.GetEnumerator()) {
+ #     Write-Host "`n"
+ #     $Key = $ide.Key
+ #     $Value = $ide.Value
+ #     $Path = "$env:USERPROFILE\Custom\$Key"
+ #     Write-Host "IDE: $Key, Version: $Value, Path: $Path"
+ #     winget install --location $Path --id $Key --version $Value -e
+ #     Write-Host "`n"
+ # }
 
 
 
