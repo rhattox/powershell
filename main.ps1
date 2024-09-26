@@ -54,7 +54,8 @@ $dev = @(
     #"Oracle.JDK.22",
     #"JetBrains.IntelliJIDEA.Ultimate",
     #"Microsoft.VisualStudio.2022.Community",
-    "Debian.Debian"
+    "Debian.Debian",
+    "Oracle.VirtualBox"
 )
     
 
@@ -105,7 +106,7 @@ if ($installGamerApps) {
 if ($installDevApps) {
     InstallApps -apps $dev
 	Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
-	Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -NoRestart
+	# Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -NoRestart
 	Enable-WindowsOptionalFeature -Online -FeatureName TelnetClient -NoRestart
 	Enable-WindowsOptionalFeature -Online -FeatureName Containers -NoRestart
 	Enable-WindowsOptionalFeature -Online -FeatureName Containers-DisposableClientVM -All -NoRestart
