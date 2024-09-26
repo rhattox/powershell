@@ -8,9 +8,9 @@
 
 $installUserApps = $false
 $installGamerApps = $false
-$installDevApps = $true
-$installContainersApps = $true
-$installHashicorpApps = $true
+$installDevApps = $false
+$installContainersApps = $false
+$installHashicorpApps = $false
 #
 # User
 #
@@ -51,9 +51,9 @@ $dev = @(
     "Microsoft.PowerShell",
     "GitHub.GitHubDesktop",
     "GitHub.cli"
-    "Oracle.JDK.22",
-    "JetBrains.IntelliJIDEA.Ultimate",
-    "Microsoft.VisualStudio.2022.Community",
+    #"Oracle.JDK.22",
+    #"JetBrains.IntelliJIDEA.Ultimate",
+    #"Microsoft.VisualStudio.2022.Community",
     "Debian.Debian"
 )
     
@@ -63,9 +63,9 @@ $containers = @(
     "Docker.DockerCLI",
     "Docker.DockerCompose",
     "Kubernetes.kubectl",
-    "Kubernetes.minikube",
+    #"Kubernetes.minikube",
     "Helm.Helm",
-    "Mirantis.Lens",
+    #"Mirantis.Lens",
     "ahmetb.kubectx",
     "ahmetb.kubens"
     # "argoproj.argocd"
@@ -95,12 +95,21 @@ function InstallApps {
 
 if ($installUserApps) {
     InstallApps -apps $user
+	New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -PropertyType DWORD -Force
+	New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name TaskbarSmallIcons -Value 1 -PropertyType DWORD -Force
+
 }
 if ($installGamerApps) {
     InstallApps -apps $gamer
 }
 if ($installDevApps) {
     InstallApps -apps $dev
+	Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+	Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -NoRestart
+	Enable-WindowsOptionalFeature -Online -FeatureName TelnetClient -NoRestart
+	Enable-WindowsOptionalFeature -Online -FeatureName Containers -NoRestart
+	Enable-WindowsOptionalFeature -Online -FeatureName Containers-DisposableClientVM -All -NoRestart
+
 }
 if ($installContainersApps) {
     InstallApps -apps $containers
@@ -109,12 +118,3 @@ if ($installHashicorpApps) {
     InstallApps -apps $hashicorp
 }
 
-# Enable-WindowsOptionalFeature -Online -FeatureName TelnetClient -NoRestart
-# Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
-# Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -NoRestart
-# Enable-WindowsOptionalFeature -Online -FeatureName Containers -NoRestart
-# Enable-WindowsOptionalFeature -Online -FeatureName Containers-DisposableClientVM -All 
-
-# New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -PropertyType DWORD -Force
-
-# New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name TaskbarSmallIcons -Value 1 -PropertyType DWORD -Force
