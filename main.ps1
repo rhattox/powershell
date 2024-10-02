@@ -22,7 +22,8 @@ $user = @(
     "Telegram.TelegramDesktop",
     "7zip.7zip",
     "VideoLAN.VLC",
-    "qBittorrent.qBittorrent"
+    "qBittorrent.qBittorrent",
+    "Flameshot.Flameshot"
 )
 #
 # Gamer
