@@ -118,6 +118,8 @@ if ($installDevApps) {
 	Enable-WindowsOptionalFeature -Online -FeatureName TelnetClient -NoRestart
 	Enable-WindowsOptionalFeature -Online -FeatureName Containers -NoRestart
 	Enable-WindowsOptionalFeature -Online -FeatureName Containers-DisposableClientVM -All -NoRestart
+	reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters /v DisabledComponents /t REG_DWORD /d 32 /f
+
 
 }
 if ($installContainersApps) {
